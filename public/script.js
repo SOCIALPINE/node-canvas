@@ -36,7 +36,7 @@ function resizeCanvas() {
   canvas.width = size;
   canvas.height = size;
 
-  const pickerSize = isMobile ? size * 0.9 : Math.min(1000, size * 1.2);
+  const pickerSize = isMobile ? size * 0.9 : Math.min(400, size * 0.8);
   colorPicker.resize(pickerSize);
 
   drawCanvas();
