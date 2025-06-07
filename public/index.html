@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>r/place 1000x1000 Clone</title>
   <!-- Add Iro.js -->
   <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
@@ -19,47 +19,96 @@
     }
     .main-container {
       display: flex;
-      gap: 30px;
-      align-items: flex-start;
-      padding: 20px;
+      gap: 60px;
+      align-items: center;
+      padding: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 100vw;
+      box-sizing: border-box;
+      min-height: 100vh;
     }
     #canvas {
-      border: 2px solid #999;
+      border: 3px solid #999;
       background: #fff;
       cursor: crosshair;
       flex-shrink: 0;
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .color-picker-container {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 35px;
       background: #333;
-      padding: 25px;
-      border-radius: 15px;
-      border: 3px solid #666;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 50px;
+      border-radius: 25px;
+      border: 4px solid #666;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      max-width: 100%;
+      box-sizing: border-box;
     }
     #colorPicker {
-      width: 400px !important;
+      width: min(1000px, 90vw) !important;
     }
     .IroColorPicker {
-      width: 400px !important;
-      height: 400px !important;
+      width: min(1000px, 90vw) !important;
+      height: min(1000px, 90vw) !important;
     }
     .IroSlider {
-      width: 400px !important;
-      height: 50px !important;
+      width: min(1000px, 90vw) !important;
+      height: 100px !important;
     }
     .IroHandle {
-      width: 32px !important;
-      height: 32px !important;
+      width: 56px !important;
+      height: 56px !important;
     }
     .color-value {
       color: white;
       font-family: Arial, sans-serif;
-      font-size: 24px;
-      margin-top: 15px;
+      font-size: clamp(24px, 4vw, 40px);
+      margin-top: 30px;
       text-align: center;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 20px;
+        min-height: auto;
+      }
+      .color-picker-container {
+        padding: 25px;
+      }
+      .IroSlider {
+        height: 50px !important;
+      }
+      .IroHandle {
+        width: 36px !important;
+        height: 36px !important;
+      }
+      #canvas {
+        border-width: 2px;
+      }
+    }
+
+    /* Desktop specific styles */
+    @media (min-width: 769px) {
+      .main-container {
+        padding: 50px;
+      }
+      .color-picker-container {
+        padding: 60px;
+      }
+    }
+
+    /* Prevent touch zoom on mobile */
+    * {
+      touch-action: manipulation;
     }
   </style>
 </head>
