@@ -7,25 +7,49 @@ let lastPlacedTime = parseInt(localStorage.getItem('lastPlacedTime') || '0');
 let pixelData = []; 
 let userId = localStorage.getItem('userId');
 let currentColor = '#ff0000';
-
-// Function to check if user can place a pixel
 function canPlacePixel() {
   const now = Date.now();
   const timeLeft = COOLDOWN_MS - (now - lastPlacedTime);
   return timeLeft <= 0;
 }
 
-// Function to get remaining cooldown time
+
 function getRemainingCooldown() {
   const now = Date.now();
   const timeLeft = COOLDOWN_MS - (now - lastPlacedTime);
   return Math.max(0, timeLeft);
 }
 
-// Initialize Iro.js color picker
+function resizeCanvas() {
+  const container = document.querySelector('.main-container');
+  const containerWidth = container.clientWidth;
+  const isMobile = window.innerWidth <= 768;
+  
+  let availableWidth;
+  if (isMobile) {
+    availableWidth = containerWidth - 20;
+  } else {
+    availableWidth = containerWidth * 0.8;
+  }
+  
+  const size = Math.min(availableWidth, window.innerHeight * 0.9);
+  canvas.width = size;
+  canvas.height = size;
+
+  const pickerSize = isMobile ? size * 0.9 : Math.min(1000, size * 1.2);
+  colorPicker.resize(pickerSize);
+
+  drawCanvas();
+}
+
+const resizeObserver = new ResizeObserver(() => {
+  resizeCanvas();
+});
+resizeObserver.observe(document.querySelector('.main-container'));
+
 const colorPicker = new iro.ColorPicker('#colorPicker', {
-  width: 400,
-  height: 400,
+  width: 1000,
+  height: 1000,
   color: '#ff0000',
   borderWidth: 3,
   borderColor: '#666',
@@ -58,14 +82,11 @@ if (!userId) {
   userId = Math.random().toString(36).substr(2, 9);
   localStorage.setItem('userId', userId);
 }
-function resizeCanvas() {
-  const size = Math.min(window.innerWidth, window.innerHeight) * 0.9;
-  canvas.width = size;
-  canvas.height = size;
-  drawCanvas();
-}
 
+// Initial resize
+window.addEventListener('load', resizeCanvas);
 window.addEventListener('resize', resizeCanvas);
+
 socket.on('init', (data) => {
   pixelData = data;
   resizeCanvas();
