@@ -1,0 +1,25 @@
+html, body {
+    margin: 0; padding: 0; overflow: hidden; height: 10%; width: 10%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: #222;
+  }
+  
+  #container {
+    border: 3px solid #fff;
+  }
+  
+  #canvas {
+    background: #fff;
+    display: block;
+  }
+  
+  #colorPicker {
+    width: 60px;    /* 원하는 가로 크기 */
+    height: 60px;   /* 원하는 세로 크기 */
+    cursor: pointer;
+    border: 2px solid #333;
+    border-radius: 8px;
+    margin: 10px;
+  }
+  
+  

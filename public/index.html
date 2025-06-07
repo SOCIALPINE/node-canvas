@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>r/place 1000x1000 Clone</title>
+  <!-- Add Iro.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+  <style>
+    html, body {
+      margin: 0; 
+      padding: 0; 
+      height: 100%; 
+      overflow: hidden;
+      background: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main-container {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      padding: 20px;
+    }
+    #canvas {
+      border: 2px solid #999;
+      background: #fff;
+      cursor: crosshair;
+      flex-shrink: 0;
+    }
+    .color-picker-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background: #333;
+      padding: 25px;
+      border-radius: 15px;
+      border: 3px solid #666;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #colorPicker {
+      width: 400px !important;
+    }
+    .IroColorPicker {
+      width: 400px !important;
+      height: 400px !important;
+    }
+    .IroSlider {
+      width: 400px !important;
+      height: 50px !important;
+    }
+    .IroHandle {
+      width: 32px !important;
+      height: 32px !important;
+    }
+    .color-value {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      margin-top: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <canvas id="canvas"></canvas>
+    <div class="color-picker-container">
+      <div id="colorPicker"></div>
+      <div class="color-value">Selected color: <span id="colorValue">#ff0000</span></div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
