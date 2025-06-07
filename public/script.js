@@ -48,8 +48,8 @@ const resizeObserver = new ResizeObserver(() => {
 resizeObserver.observe(document.querySelector('.main-container'));
 
 const colorPicker = new iro.ColorPicker('#colorPicker', {
-  width: 1000,
-  height: 1000,
+  width: 400,
+  height: 400,
   color: '#ff0000',
   borderWidth: 3,
   borderColor: '#666',
